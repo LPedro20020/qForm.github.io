@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const reconsiderButton = document.getElementById('reconsiderButton');
 
     let scaleFactor = 1;
+    let transparentFactor = 1;
 
     noButton.addEventListener('click', function() {
         if (meGifIndex < meGifs.length - 1) {
@@ -111,8 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         scaleFactor *= 2;
+        transparentFactor *= 1.5
         yesButton.style.transform = `scale(${scaleFactor})`;
-        yesButton.style.opacity = 1 / scaleFactor;
+        yesButton.style.opacity = 1 / transparentFactor;
     });
 
     reconsiderButton.addEventListener('click', function() {
