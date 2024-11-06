@@ -6,6 +6,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('dateOptionsSection'),
         document.getElementById('thankYouSection')
     ];
+
+    function saveCheckboxState() {
+        const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
+        const checkboxState = {};
+        checkboxes.forEach(checkbox => {
+            checkboxState[checkbox.id] = checkbox.checked;
+        });
+        localStorage.setItem('checkboxState', JSON.stringify(checkboxState));
+    }
+
+    function loadCheckboxState() {
+        const checkboxState = JSON.parse(localStorage.getItem('checkboxState')) || {};
+        const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            if (checkboxState[checkbox.id] !== undefined) {
+                checkbox.checked = checkboxState[checkbox.id];
+            }
+        });
+    }
+
+    loadCheckboxState();
     const helloButton = document.getElementById('helloButton');
     const yesNoCheckbox = document.getElementById('yesNoCheckbox');
     const yesButton = document.getElementById('yesButton');
@@ -130,11 +151,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const dateIdeaInput = document.getElementById('dateIdeaInput');
+    const dateIdeaDescriptionInput = document.getElementById('dateIdeaDescriptionInput');
     const dateIdeasList = document.getElementById('dateIdeasList');
+
+    function saveDateIdeas() {
+        const rows = dateIdeasList.querySelectorAll('tbody tr');
+        const dateIdeas = [];
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            dateIdeas.push({
+                idea: cells[0].textContent,
+                description: cells[1].textContent
+            });
+        });
+        localStorage.setItem('dateIdeas', JSON.stringify(dateIdeas));
+    }
+
+    function loadDateIdeas() {
+        const dateIdeas = JSON.parse(localStorage.getItem('dateIdeas')) || [];
+        dateIdeas.forEach(idea => {
+            const row = document.createElement('tr');
+            const dateIdeaCell = document.createElement('td');
+            const dateIdeaDescriptionCell = document.createElement('td');
+            dateIdeaCell.textContent = idea.idea;
+            dateIdeaDescriptionCell.textContent = idea.description;
+            row.appendChild(dateIdeaCell);
+            row.appendChild(dateIdeaDescriptionCell);
+            dateIdeasList.querySelector('tbody').appendChild(row);
+        });
+    }
 
     enterIdeaButton.addEventListener('click', function() {
         const dateIdea = dateIdeaInput.value.trim();
-        const dateIdeaDescription = document.getElementById('dateIdeaDescriptionInput').value.trim();
+        const dateIdeaDescription = dateIdeaDescriptionInput.value.trim();
         if (dateIdea) {
             const row = document.createElement('tr');
             const dateIdeaCell = document.createElement('td');
@@ -145,15 +194,25 @@ document.addEventListener('DOMContentLoaded', function() {
             row.appendChild(dateIdeaDescriptionCell);
             dateIdeasList.querySelector('tbody').appendChild(row);
             dateIdeaInput.value = ''; // Clear the input field
-            document.getElementById('dateIdeaDescriptionInput').value = ''; // Clear the description input field
+            dateIdeaDescriptionInput.value = ''; // Clear the description input field
+            saveDateIdeas();
         }
     });
+
+    loadDateIdeas();
 
     submitFormButton.addEventListener('click', function() {
         currentSectionIndex = 4;
         showSection(currentSectionIndex);
+        saveDateIdeas();
     });
 
-    forwardButton.addEventListener('click', nextSection);
-    backwardButton.addEventListener('click', previousSection);
+    forwardButton.addEventListener('click', function() {
+        nextSection();
+        saveCheckboxState();
+    });
+    backwardButton.addEventListener('click', function() {
+        previousSection();
+        saveCheckboxState();
+    });
 });
