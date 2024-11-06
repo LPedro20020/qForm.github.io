@@ -7,43 +7,52 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('thankYouSection')
     ];
 
-    async function saveCheckboxState() {
-        let token = '$2a$10$7/2aLKrRIEowSHj.VTZ6OukJVQAgDVm6sGGV43TvTfW638HUCeRjS'
-        let url = 'https://api.jsonbin.io/v3/b/672b7e24e41b4d34e44f8cfa'
-        var XMLHttpRequest = require('xhr2');
-        let data = new XMLHttpRequest();
-        data.onreadystatechange = () => {
-            if (data.readyState == XMLHttpRequest.DONE) {
-              console.log(data.responseText);
-            }
-        };
+    let token = '$2a$10$7/2aLKrRIEowSHj.VTZ6OukJVQAgDVm6sGGV43TvTfW638HUCeRjS'
+    let url = 'https://api.jsonbin.io/v3/b/672b7e24e41b4d34e44f8cfa'
         
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log(xhr.responseText);
+        }
+    };
+
+    async function saveCheckboxState() {
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         const checkboxState = {};
         checkboxes.forEach(checkbox => {
             checkboxState[checkbox.id] = checkbox.checked;
         });
 
-        data.open("PUT", url, true);
-        data.setRequestHeader("Content-Type", "application/json");
-        data.setRequestHeader("X-Master-Key", token);
-        data.onreadystatechange = function() {
-            if (data.readyState === 4) {
-                if (data.status === 200) {
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("X-Master-Key", token);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
                     console.log("Checkbox state saved successfully");
                 } else {
                     console.error("Failed to save checkbox state:", data.statusText);
+                    print("failed");
                 }
             }
         };
-        data.send(JSON.stringify({ checkboxState }));
+        xhr.send(JSON.stringify(checkboxState));
     }
 
     async function loadCheckboxState() {
-        const data = req.open("GET", url, true);
-        req.setRequestHeader("X-Master-Key", token);
-        req.send()
-        const checkboxState = data.checkboxState || {};
+        let xhr2 = new XMLHttpRequest();
+        xhr2.onreadystatechange = () => {
+            if (xhr2.readyState == XMLHttpRequest.DONE) {
+                console.log(xhr2.responseText);
+            }
+        };
+        
+        xhr2.open("GET", url, true);
+        xhr2.setRequestHeader("X-Master-Key", token);
+        xhr2.send()
+        
+        const checkboxState = xhr2.checkboxState || {};
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
             if (checkboxState[checkbox.id] !== undefined) {
