@@ -67,10 +67,12 @@ img {
 
 #inputContainer {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 #enterIdeaButton {
     height: 4em; /* Adjust the height to take up two lines */
-    margin-left: 10px; /* Add some margin to separate the button from the input fields */
+    align-self: flex-end; /* Align the button to the right */
+    margin-top: 10px; /* Add some margin to separate the button from the input fields */
 }
