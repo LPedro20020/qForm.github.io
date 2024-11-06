@@ -80,4 +80,5 @@ img {
     right: 0; /* Position the button to the right */
     top: 50%; /* Center the button vertically */
     transform: translateY(-50%); /* Adjust for vertical centering */
+    margin-right: 10px; /* Add a small margin on the right side */
 }
