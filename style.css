@@ -218,3 +218,8 @@ container */
     top: 5px;
     border-radius: 0px 0px 0px 5px;
    }
+
+   #dateIdeasList td {
+    width: 200px; /* Increase the width of 
+the table cells */
+   }
