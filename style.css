@@ -61,6 +61,16 @@ img {
     margin-right: 30px; /* Add margin on the right */
 }
 
+#reconsiderButton {
+    display: none;
+    margin-top: 20px; /* Add space between the button and the GIF abov 
+it */
+    position: relative; /* Ensure the button is centered within its    
+container */
+    left: 50%; /* Move the button to the center */
+    transform: translateX(-50%); /* Adjust for the button's width */   
+}
+
 #dateOptionsSection img[src*="watching.gif"] {
     position: fixed;
     right: 10px;
