@@ -39,29 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send(JSON.stringify(checkboxState));
     }
 
-    async function loadCheckboxState() {
-        let xhr2 = new XMLHttpRequest();
-        xhr2.onreadystatechange = () => {
-            if (xhr2.readyState == XMLHttpRequest.DONE) {
-                if (xhr2.status === 200) {
-                    const checkboxState = JSON.parse(xhr2.responseText);
-                    const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
-                    checkboxes.forEach(checkbox => {
-                        if (checkboxState[checkbox.id] !== undefined) {
-                            checkbox.checked = checkboxState[checkbox.id];
-                        }
-                    });
-                } else {
-                    console.error("Failed to load checkbox state:", xhr2.statusText);
-                }
-            }
-        };
+    async function loadCheckboxState() {        
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("X-Master-Key", token);
+        xhr.send()
         
-        xhr2.open("GET", url, true);
-        xhr2.setRequestHeader("X-Master-Key", token);
-        xhr2.send()
-        
-        const checkboxState = xhr2.checkboxState || {};
+        const checkboxState = xhr.checkboxState || {};
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
             if (checkboxState[checkbox.id] !== undefined) {
