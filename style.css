@@ -83,3 +83,9 @@ img {
     transform: translateY(-50%); /* Adjust for vertical centering */
     margin-right: 65px; /* Add a small margin on the right side */
 }
+
+.big-text {
+    font-size: 48px; /* Make the text large */
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Add some margin at the top */
+}
