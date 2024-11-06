@@ -16,6 +16,10 @@ label {
     margin-bottom: 10px;
 }
 
+#helloDiv, #okSection, #yesNoSection, #dateOptionsSection, #thankYouSection {
+    display: none;
+}
+
 #additionalInputs {
     margin-top: 10px;
 }
