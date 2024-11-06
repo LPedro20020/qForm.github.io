@@ -101,6 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             finalNoGif.style.display = 'block';
             yesNoButtons.style.display = 'none';
+            meGifs.forEach(gif => gif.style.display = 'none');
+            herGifs.forEach(gif => gif.style.display = 'none');
         }
     });
 
