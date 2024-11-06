@@ -37,6 +37,14 @@ img {
     width: 100%;
 }
 
+#dateOptionsSection img[src*="watching.gif"] {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 100px;
+    height: auto;
+}
+
 #additionalInputs {
     margin-top: 10px;
 }
