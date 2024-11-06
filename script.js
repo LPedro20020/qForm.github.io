@@ -44,7 +44,17 @@ document.addEventListener('DOMContentLoaded', function() {
         let xhr2 = new XMLHttpRequest();
         xhr2.onreadystatechange = () => {
             if (xhr2.readyState == XMLHttpRequest.DONE) {
-                console.log(xhr2.responseText);
+                if (xhr2.status === 200) {
+                    const checkboxState = JSON.parse(xhr2.responseText);
+                    const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => {
+                        if (checkboxState[checkbox.id] !== undefined) {
+                            checkbox.checked = checkboxState[checkbox.id];
+                        }
+                    });
+                } else {
+                    console.error("Failed to load checkbox state:", xhr2.statusText);
+                }
             }
         };
         
