@@ -6,6 +6,8 @@ body {
     margin: 0;
     position: relative;
     overflow-y: auto; /* Allow vertical scrolling */
+    min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+    flex-direction: column; /* Stack children vertically */
 }
 
 #navigationButtons {
@@ -27,6 +29,10 @@ label {
 
 #helloDivSection, #okSection, #yesNoSection, #dateOptionsSection, #thankYouSection {
     display: none;
+    flex: 1; /* Allow sections to grow and take available space */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    display: flex; /* Use Flexbox for centering */
 }
 
 img {
