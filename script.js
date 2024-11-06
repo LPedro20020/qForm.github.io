@@ -195,15 +195,21 @@ document.addEventListener('DOMContentLoaded', function() {
             dateIdeaDescriptionCell.textContent = dateIdeaDescription;
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Trash';
+            deleteButton.style.opacity = '0.5';
+            deleteButton.addEventListener('mouseover', function() {
+                deleteButton.style.opacity = '1';
+            });
+            deleteButton.addEventListener('mouseout', function() {
+                deleteButton.style.opacity = '0.5';
+            });
             deleteButton.addEventListener('click', function() {
                 row.remove();
                 saveDateIdeas();
             });
-            actionCell.appendChild(deleteButton);
             row.appendChild(numberCell);
             row.appendChild(dateIdeaCell);
             row.appendChild(dateIdeaDescriptionCell);
-            row.appendChild(actionCell);
+            row.appendChild(deleteButton);
             dateIdeasList.querySelector('tbody').appendChild(row);
             dateIdeaInput.value = ''; // Clear the input field
             dateIdeaDescriptionInput.value = ''; // Clear the description input field
