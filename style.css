@@ -69,11 +69,11 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* Right-align the button */
 }
 
 #enterIdeaButton {
     height: 4em; /* Adjust the height to take up two lines */
-    align-self: center; /* Center the button */
+    align-self: flex-end; /* Right-align the button */
     margin-top: 10px; /* Add some margin to separate the button from the input fields */
 }
