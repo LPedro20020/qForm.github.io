@@ -69,6 +69,11 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center vertically */
+}
+
+#inputContainer input {
+    align-self: flex-start; /* Left-align the input fields */
 }
 
 #enterIdeaButton {
