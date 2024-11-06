@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    enterIdeaButton.addEventListener('click', function() {
+    enterIdeaButton.addEventListener('click', async function() {
         const dateIdea = dateIdeaInput.value.trim();
         const dateIdeaDescription = dateIdeaDescriptionInput.value.trim();
         if (dateIdea) {
@@ -220,9 +220,9 @@ document.addEventListener('DOMContentLoaded', function() {
             deleteButton.addEventListener('mouseout', function() {
                 deleteButton.style.opacity = '0.5';
             });
-            deleteButton.addEventListener('click', function() {
+            deleteButton.addEventListener('click', async function() {
                 row.remove();
-                saveDateIdeas();
+                await saveDateIdeas();
             });
             row.appendChild(numberCell);
             row.appendChild(dateIdeaCell);
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dateIdeasList.querySelector('tbody').appendChild(row);
             dateIdeaInput.value = ''; // Clear the input field
             dateIdeaDescriptionInput.value = ''; // Clear the description input field
-            saveDateIdeas();
+            await saveDateIdeas();
         }
     });
 
