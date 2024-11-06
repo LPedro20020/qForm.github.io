@@ -24,16 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
             checkboxState[checkbox.id] = checkbox.checked;
         });
 
-        data.open("GET", url);
-        data.setRequestHeader("X-Master-Key", token);
-        data.send();
-
-        data.response.checkboxState = checkboxState;
-        
         data.open("PUT", url, true);
         data.setRequestHeader("Content-Type", "application/json");
-        data.setRequestHeader("X-Master-Key", url);
-        data.send(JSON.stringify(data.response));
+        data.setRequestHeader("X-Master-Key", token);
+        data.send(JSON.stringify({ checkboxState }));
     }
 
     async function loadCheckboxState() {
