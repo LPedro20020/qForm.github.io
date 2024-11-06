@@ -1,40 +1,65 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const helloDiv = document.getElementById('helloDiv');
-    const okSection = document.getElementById('okSection');
-    const yesNoSection = document.getElementById('yesNoSection');
-    const dateOptionsSection = document.getElementById('dateOptionsSection');
-    const thankYouSection = document.getElementById('thankYouSection');
+    const sections = [
+        document.getElementById('helloDiv'),
+        document.getElementById('okSection'),
+        document.getElementById('yesNoSection'),
+        document.getElementById('dateOptionsSection'),
+        document.getElementById('thankYouSection')
+    ];
     const helloButton = document.getElementById('helloButton');
     const yesNoCheckbox = document.getElementById('yesNoCheckbox');
     const yesButton = document.getElementById('yesButton');
     const submitFormButton = document.getElementById('submitFormButton');
+    const forwardButton = document.getElementById('forwardButton');
+    const backwardButton = document.getElementById('backwardButton');
+
+    let currentSectionIndex = 0;
+
+    function showSection(index) {
+        sections.forEach((section, i) => {
+            section.style.display = i === index ? 'block' : 'none';
+        });
+    }
+
+    function nextSection() {
+        if (currentSectionIndex < sections.length - 1) {
+            currentSectionIndex++;
+            showSection(currentSectionIndex);
+        }
+    }
+
+    function previousSection() {
+        if (currentSectionIndex > 0) {
+            currentSectionIndex--;
+            showSection(currentSectionIndex);
+        }
+    }
 
     // Show the helloDiv section by default
-    helloDiv.style.display = 'block';
-    okSection.style.display = 'none';
-    yesNoSection.style.display = 'none';
-    dateOptionsSection.style.display = 'none';
-    thankYouSection.style.display = 'none';
+    showSection(currentSectionIndex);
 
     helloButton.addEventListener('click', function() {
-        helloDiv.style.display = 'none';
-        okSection.style.display = 'block';
+        currentSectionIndex = 1;
+        showSection(currentSectionIndex);
     });
 
     yesNoCheckbox.addEventListener('change', function() {
         if (this.checked) {
-            okSection.style.display = 'none';
-            yesNoSection.style.display = 'block';
+            currentSectionIndex = 2;
+            showSection(currentSectionIndex);
         }
     });
 
     yesButton.addEventListener('click', function() {
-        yesNoSection.style.display = 'none';
-        dateOptionsSection.style.display = 'block';
+        currentSectionIndex = 3;
+        showSection(currentSectionIndex);
     });
 
     submitFormButton.addEventListener('click', function() {
-        dateOptionsSection.style.display = 'none';
-        thankYouSection.style.display = 'block';
+        currentSectionIndex = 4;
+        showSection(currentSectionIndex);
     });
+
+    forwardButton.addEventListener('click', nextSection);
+    backwardButton.addEventListener('click', previousSection);
 });
