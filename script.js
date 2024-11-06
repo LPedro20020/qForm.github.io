@@ -118,6 +118,19 @@ document.addEventListener('DOMContentLoaded', function() {
         showGifs(meGifIndex, herGifIndex);
     });
 
+    const dateIdeaInput = document.getElementById('dateIdeaInput');
+    const dateIdeasList = document.getElementById('dateIdeasList');
+
+    enterIdeaButton.addEventListener('click', function() {
+        const dateIdea = dateIdeaInput.value.trim();
+        if (dateIdea) {
+            const listItem = document.createElement('li');
+            listItem.textContent = dateIdea;
+            dateIdeasList.appendChild(listItem);
+            dateIdeaInput.value = ''; // Clear the input field
+        }
+    });
+
     submitFormButton.addEventListener('click', function() {
         currentSectionIndex = 4;
         showSection(currentSectionIndex);
