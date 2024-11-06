@@ -45,6 +45,22 @@ img {
     width: 100%;
 }
 
+#yesButton {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 30px; /* Add margin on the left */
+}
+
+#noButton {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 30px; /* Add margin on the right */
+}
+
 #dateOptionsSection img[src*="watching.gif"] {
     position: fixed;
     right: 10px;
@@ -89,3 +105,4 @@ img {
     text-align: center; /* Center the text */
     margin-top: 20px; /* Add some margin at the top */
 }
+
