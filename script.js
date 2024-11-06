@@ -106,6 +106,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    const reconsiderButton = document.getElementById('reconsiderButton');
+
+    noButton.addEventListener('click', function() {
+        if (meGifIndex < meGifs.length - 1) {
+            meGifIndex++;
+            herGifIndex++;
+            showGifs(meGifIndex, herGifIndex);
+        } else {
+            finalNoGif.style.display = 'block';
+            yesNoButtons.style.display = 'none';
+            meGifs.forEach(gif => gif.style.display = 'none');
+            herGifs.forEach(gif => gif.style.display = 'none');
+            reconsiderButton.style.display = 'block';
+        }
+    });
+
+    reconsiderButton.addEventListener('click', function() {
+        finalNoGif.style.display = 'none';
+        reconsiderButton.style.display = 'none';
+        yesNoButtons.style.display = 'block';
+        meGifIndex = 0;
+        herGifIndex = 0;
+        showGifs(meGifIndex, herGifIndex);
+    });
+
     submitFormButton.addEventListener('click', function() {
         currentSectionIndex = 4;
         showSection(currentSectionIndex);
