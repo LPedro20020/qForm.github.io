@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (xhr.status === 200) {
                     console.log("Checkbox state saved successfully");
                 } else {
-                    console.error("Failed to save checkbox state:", data.statusText);
-                    print("failed");
+                    console.error("Failed to save checkbox state:", xhr.statusText);
                 }
             }
         };
@@ -209,39 +208,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: cells[1].textContent
             });
         });
-        const data = await fetch(url, {
-            headers: {
-                Authorization: 'Bearer ' + token,
-            },
-        }).then(response => response.json());
-        data.dateIdeas = dateIdeas;
-        await fetch(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization : 'Bearer ' + token,
-            },
-            body: JSON.stringify(data)
-        });
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("X-Master-Key", token);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    console.log("Date ideas saved successfully");
+                } else {
+                    console.error("Failed to save date ideas:", xhr.statusText);
+                }
+            }
+        };
+        xhr.send(JSON.stringify({ dateIdeas }));
     }
 
     async function loadDateIdeas() {
-        const data = await fetch(url, {
-            headers: {
-                Authorization: 'Bearer ' + token,
-            },
-        }).then(response => response.json());
-        const dateIdeas = data.dateIdeas || [];
-        dateIdeas.forEach(idea => {
-            const row = document.createElement('tr');
-            const dateIdeaCell = document.createElement('td');
-            const dateIdeaDescriptionCell = document.createElement('td');
-            dateIdeaCell.textContent = idea.idea;
-            dateIdeaDescriptionCell.textContent = idea.description;
-            row.appendChild(dateIdeaCell);
-            row.appendChild(dateIdeaDescriptionCell);
-            dateIdeasList.querySelector('tbody').appendChild(row);
-        });
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("X-Master-Key", token);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    const dateIdeas = data.dateIdeas || [];
+                    dateIdeas.forEach(idea => {
+                        const row = document.createElement('tr');
+                        const dateIdeaCell = document.createElement('td');
+                        const dateIdeaDescriptionCell = document.createElement('td');
+                        dateIdeaCell.textContent = idea.idea;
+                        dateIdeaDescriptionCell.textContent = idea.description;
+                        row.appendChild(dateIdeaCell);
+                        row.appendChild(dateIdeaDescriptionCell);
+                        dateIdeasList.querySelector('tbody').appendChild(row);
+                    });
+                } else {
+                    console.error("Failed to load date ideas:", xhr.statusText);
+                }
+            }
+        };
+        xhr.send();
     }
 
     enterIdeaButton.addEventListener('click', async function() {
