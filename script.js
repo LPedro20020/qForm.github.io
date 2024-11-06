@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sections = [
-        document.getElementById('helloDiv'),
+        document.getElementById('helloDivSection'),
         document.getElementById('okSection'),
         document.getElementById('yesNoSection'),
         document.getElementById('dateOptionsSection'),

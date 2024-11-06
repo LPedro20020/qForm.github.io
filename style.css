@@ -25,7 +25,7 @@ label {
     margin-bottom: 10px;
 }
 
-#helloDiv, #okSection, #yesNoSection, #dateOptionsSection, #thankYouSection {
+#helloDivSection, #okSection, #yesNoSection, #dateOptionsSection, #thankYouSection {
     display: none;
 }
 
