@@ -33,6 +33,8 @@ label {
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
     display: flex; /* Use Flexbox for centering */
+    margin-top: 20px; /* Add margin at the top */
+    margin-bottom: 20px; /* Add margin at the bottom */
 }
 
 img {
