@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadCheckboxState();
     const helloButton = document.getElementById('helloButton');
-    const yesNoCheckbox = document.getElementById('yesNoCheckbox');
+    const switchElement = document.getElementById('switch');
     const yesButton = document.getElementById('yesButton');
     const submitFormButton = document.getElementById('submitFormButton');
     const forwardButton = document.getElementById('forwardButton');
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    yesNoCheckbox.addEventListener('change', function() {
+    switchElement.addEventListener('change', function() {
         if (this.checked) {
             currentSectionIndex = 2;
             showSection(currentSectionIndex);
