@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    margin: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+#additionalInputs {
+    margin-top: 10px;
+}
