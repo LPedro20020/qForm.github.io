@@ -123,11 +123,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     enterIdeaButton.addEventListener('click', function() {
         const dateIdea = dateIdeaInput.value.trim();
+        const dateIdeaDescription = document.getElementById('dateIdeaDescriptionInput').value.trim();
         if (dateIdea) {
             const listItem = document.createElement('li');
-            listItem.textContent = dateIdea;
+            listItem.textContent = `${dateIdea}: ${dateIdeaDescription}`;
             dateIdeasList.appendChild(listItem);
             dateIdeaInput.value = ''; // Clear the input field
+            document.getElementById('dateIdeaDescriptionInput').value = ''; // Clear the description input field
         }
     });
 
