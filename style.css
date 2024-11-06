@@ -35,6 +35,7 @@ label {
     display: flex; /* Use Flexbox for centering */
     margin-top: 50px; /* Add margin at the top */
     margin-bottom: 50px; /* Add margin at the bottom */
+    transition: opacity 1s ease; /* Slow down the transition */
 }
 
 img {
