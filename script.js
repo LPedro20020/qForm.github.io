@@ -95,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const reconsiderButton = document.getElementById('reconsiderButton');
 
+    let scaleFactor = 1;
+
     noButton.addEventListener('click', function() {
         if (meGifIndex < meGifs.length - 1) {
             meGifIndex = (meGifIndex + 1) % meGifs.length;
@@ -107,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
             herGifs.forEach(gif => gif.style.display = 'none');
             reconsiderButton.style.display = 'block';
         }
+
+        scaleFactor *= 2;
+        yesButton.style.transform = `scale(${scaleFactor})`;
     });
 
     reconsiderButton.addEventListener('click', function() {
@@ -116,6 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
         meGifIndex = 0;
         herGifIndex = 0;
         showGifs(meGifIndex, herGifIndex);
+        scaleFactor = 1;
+        yesButton.style.transform = 'scale(1)';
     });
 
     const dateIdeaInput = document.getElementById('dateIdeaInput');
