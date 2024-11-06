@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         scaleFactor *= 2;
         yesButton.style.transform = `scale(${scaleFactor})`;
+        yesButton.style.opacity = 1 / scaleFactor;
     });
 
     reconsiderButton.addEventListener('click', function() {
@@ -123,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showGifs(meGifIndex, herGifIndex);
         scaleFactor = 1;
         yesButton.style.transform = 'scale(1)';
+        yesButton.style.opacity = 1;
     });
 
     const dateIdeaInput = document.getElementById('dateIdeaInput');
