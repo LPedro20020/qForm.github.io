@@ -27,6 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
         data.open("PUT", url, true);
         data.setRequestHeader("Content-Type", "application/json");
         data.setRequestHeader("X-Master-Key", token);
+        data.onreadystatechange = function() {
+            if (data.readyState === 4) {
+                if (data.status === 200) {
+                    console.log("Checkbox state saved successfully");
+                } else {
+                    console.error("Failed to save checkbox state:", data.statusText);
+                }
+            }
+        };
         data.send(JSON.stringify({ checkboxState }));
     }
 
