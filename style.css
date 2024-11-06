@@ -65,6 +65,12 @@ img {
     margin-right: 10px;
 }
 
+#inputContainer {
+    display: flex;
+    align-items: center;
+}
+
 #enterIdeaButton {
     height: 4em; /* Adjust the height to take up two lines */
+    margin-left: 10px; /* Add some margin to separate the button from the input fields */
 }
