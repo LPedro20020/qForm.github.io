@@ -186,10 +186,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const dateIdeaDescription = dateIdeaDescriptionInput.value.trim();
         if (dateIdea) {
             const row = document.createElement('tr');
+            const numberCell = document.createElement('td');
             const dateIdeaCell = document.createElement('td');
             const dateIdeaDescriptionCell = document.createElement('td');
+            numberCell.textContent = dateIdeasList.querySelectorAll('tbody tr').length + 1;
             dateIdeaCell.textContent = dateIdea;
             dateIdeaDescriptionCell.textContent = dateIdeaDescription;
+            row.appendChild(numberCell);
             row.appendChild(dateIdeaCell);
             row.appendChild(dateIdeaDescriptionCell);
             dateIdeasList.querySelector('tbody').appendChild(row);
