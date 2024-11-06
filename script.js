@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dateIdeaDescriptionInput = document.getElementById('dateIdeaDescriptionInput');
     const dateIdeasList = document.getElementById('dateIdeasList');
 
-    function saveDateIdeas() {
+    async function saveDateIdeas() {
         const rows = dateIdeasList.querySelectorAll('tbody tr');
         const dateIdeas = [];
         rows.forEach(row => {
@@ -173,11 +173,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: cells[1].textContent
             });
         });
-        localStorage.setItem('dateIdeas', JSON.stringify(dateIdeas));
+        const data = await fetch('data.json').then(response => response.json());
+        data.dateIdeas = dateIdeas;
+        await fetch('data.json', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
     }
 
-    function loadDateIdeas() {
-        const dateIdeas = JSON.parse(localStorage.getItem('dateIdeas')) || [];
+    async function loadDateIdeas() {
+        const data = await fetch('data.json').then(response => response.json());
+        const dateIdeas = data.dateIdeas || [];
         dateIdeas.forEach(idea => {
             const row = document.createElement('tr');
             const dateIdeaCell = document.createElement('td');
