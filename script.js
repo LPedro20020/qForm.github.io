@@ -8,24 +8,38 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     async function saveCheckboxState() {
+        let token = '$2a$10$7/2aLKrRIEowSHj.VTZ6OukJVQAgDVm6sGGV43TvTfW638HUCeRjS'
+        let url = 'https://api.jsonbin.io/v3/b/672b7e24e41b4d34e44f8cfa'
+        var XMLHttpRequest = require('xhr2');
+        let data = new XMLHttpRequest();
+        data.onreadystatechange = () => {
+            if (data.readyState == XMLHttpRequest.DONE) {
+              console.log(data.responseText);
+            }
+        };
+        
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         const checkboxState = {};
         checkboxes.forEach(checkbox => {
             checkboxState[checkbox.id] = checkbox.checked;
         });
-        const data = await fetch('data.json').then(response => response.json());
-        data.checkboxState = checkboxState;
-        await fetch('data.json', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+
+        data.open("GET", url);
+        data.setRequestHeader("X-Master-Key", token);
+        data.send();
+
+        data.response.checkboxState = checkboxState;
+        
+        data.open("PUT", url, true);
+        data.setRequestHeader("Content-Type", "application/json");
+        data.setRequestHeader("X-Master-Key", url);
+        data.send(JSON.stringify(data.response));
     }
 
     async function loadCheckboxState() {
-        const data = await fetch('data.json').then(response => response.json());
+        const data = req.open("GET", url, true);
+        req.setRequestHeader("X-Master-Key", token);
+        req.send()
         const checkboxState = data.checkboxState || {};
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
@@ -173,19 +187,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: cells[1].textContent
             });
         });
-        const data = await fetch('data.json').then(response => response.json());
+        const data = await fetch(url, {
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
+        }).then(response => response.json());
         data.dateIdeas = dateIdeas;
-        await fetch('data.json', {
+        await fetch(url, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization : 'Bearer ' + token,
             },
             body: JSON.stringify(data)
         });
     }
 
     async function loadDateIdeas() {
-        const data = await fetch('data.json').then(response => response.json());
+        const data = await fetch(url, {
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
+        }).then(response => response.json());
         const dateIdeas = data.dateIdeas || [];
         dateIdeas.forEach(idea => {
             const row = document.createElement('tr');
