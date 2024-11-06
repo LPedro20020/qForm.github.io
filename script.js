@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach((section, i) => {
             section.style.display = i === index ? 'block' : 'none';
         });
+        if (index === 3) {
+            document.getElementById('additionalInputs').style.display = 'block';
+        } else {
+            document.getElementById('additionalInputs').style.display = 'none';
+        }
     }
 
     function nextSection() {
