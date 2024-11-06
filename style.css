@@ -13,8 +13,8 @@ body {
 #navigationButtons {
     position: fixed; /* Fixed positioning */
     top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 10px; /* Left-aligned */
+    transform: none; /* Remove centering */
     z-index: 1000;
 }
 
