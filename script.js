@@ -189,12 +189,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const numberCell = document.createElement('td');
             const dateIdeaCell = document.createElement('td');
             const dateIdeaDescriptionCell = document.createElement('td');
+            const actionCell = document.createElement('td');
             numberCell.textContent = dateIdeasList.querySelectorAll('tbody tr').length + 1;
             dateIdeaCell.textContent = dateIdea;
             dateIdeaDescriptionCell.textContent = dateIdeaDescription;
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Trash';
+            deleteButton.addEventListener('click', function() {
+                row.remove();
+                saveDateIdeas();
+            });
+            actionCell.appendChild(deleteButton);
             row.appendChild(numberCell);
             row.appendChild(dateIdeaCell);
             row.appendChild(dateIdeaDescriptionCell);
+            row.appendChild(actionCell);
             dateIdeasList.querySelector('tbody').appendChild(row);
             dateIdeaInput.value = ''; // Clear the input field
             dateIdeaDescriptionInput.value = ''; // Clear the description input field
