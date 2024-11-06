@@ -7,17 +7,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('thankYouSection')
     ];
 
-    function saveCheckboxState() {
+    async function saveCheckboxState() {
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         const checkboxState = {};
         checkboxes.forEach(checkbox => {
             checkboxState[checkbox.id] = checkbox.checked;
         });
-        localStorage.setItem('checkboxState', JSON.stringify(checkboxState));
+        const data = await fetch('data.json').then(response => response.json());
+        data.checkboxState = checkboxState;
+        await fetch('data.json', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
     }
 
-    function loadCheckboxState() {
-        const checkboxState = JSON.parse(localStorage.getItem('checkboxState')) || {};
+    async function loadCheckboxState() {
+        const data = await fetch('data.json').then(response => response.json());
+        const checkboxState = data.checkboxState || {};
         const checkboxes = document.querySelectorAll('#additionalInputs input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
             if (checkboxState[checkbox.id] !== undefined) {
