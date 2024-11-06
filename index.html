@@ -9,32 +9,50 @@
 <body>
     <form id="yesNoForm">
         <!-- Forwards and backwards buttons -->
+        <div>
+            <button type="button" id="forwardButton">Forward</button>
+            <button type="button" id="backwardButton">Backward</button>
+        </div>
 
         <!-- Hello div container -->
-        
+        <div id="helloDiv">
             <!-- "Hello!" Gif -->
-
+            <img src="hello-gif-url.gif" alt="Hello GIF" style="display: block; margin: 0 auto;">
+            
             <!-- Hello Button -->
+            <button type="button" id="helloButton">Hello</button>
+        </div>
         
         <!-- "ok" Section container -->
+        <div id="okSection">
             <!-- "Sad" gif -->
-            <img src="your-gif-url.gif" alt="GIF" style="display: block; margin: 0 auto;">
+            <img src="sad-gif-url.gif" alt="Sad GIF" style="display: block; margin: 0 auto;">
             
             <!-- Checkbox(I hope u feel better label) -->
             <label for="yesNoCheckbox">Do you agree?</label>
             <input type="checkbox" id="yesNoCheckbox" name="yesNoCheckbox">
+        </div>
         
         <!-- "yesNo" Section container -->
+        <div id="yesNoSection">
             <!-- "me" gif -->
+            <img src="me-gif-url.gif" alt="Me GIF" style="display: block; margin: 0 auto;">
 
             <!-- yes & no buttons -->
+            <button type="button" id="yesButton">Yes</button>
+            <button type="button" id="noButton">No</button>
 
             <!-- "her" gif -->
+            <img src="her-gif-url.gif" alt="Her GIF" style="display: block; margin: 0 auto;">
 
             <!-- "Final no" gif -->
+            <img src="final-no-gif-url.gif" alt="Final No GIF" style="display: block; margin: 0 auto;">
+        </div>
 
         <!-- "Date Options" Section --> 
+        <div id="dateOptionsSection">
             <!-- "confident" gif -->
+            <img src="confident-gif-url.gif" alt="Confident GIF" style="display: block; margin: 0 auto;">
             
             <!-- options -->
             <div id="additionalInputs" style="display:none;">
@@ -55,16 +73,26 @@
             </div>
 
             <!-- "watching" gif -->
+            <img src="watching-gif-url.gif" alt="Watching GIF" style="display: block; margin: 0 auto;">
 
             <!-- Submitted date ideas list -->
+            <ul id="dateIdeasList"></ul>
+
             <!-- Input for user to submit date ideas -->
+            <input type="text" id="dateIdeaInput" placeholder="Enter date idea">
 
             <!-- "Submit Form" Button -->
+            <button type="button" id="submitFormButton">Submit Form</button>
 
             <!-- "Remember no pressure note, we can always just coexist" Text -->
+            <p>Remember, no pressure. We can always just coexist.</p>
+
             <!-- "Coexist" gif -->
+            <img src="coexist-gif-url.gif" alt="Coexist GIF" style="display: block; margin: 0 auto;">
 
             <!-- "Thank you" gif -->
+            <img src="thank-you-gif-url.gif" alt="Thank You GIF" style="display: block; margin: 0 auto;">
+        </div>
     </form>
     <script src="script.js"></script>
 </body>
