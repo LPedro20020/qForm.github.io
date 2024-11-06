@@ -5,6 +5,15 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    position: relative;
+}
+
+#navigationButtons {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 }
 
 form {
