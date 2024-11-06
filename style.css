@@ -80,4 +80,5 @@ img {
     height: 4em; /* Adjust the height to take up two lines */
     align-self: flex-end; /* Align the button to the right */
     margin-top: 10px; /* Add some margin to separate the button from the input fields */
+    align-self: center; /* Center the button */
 }
