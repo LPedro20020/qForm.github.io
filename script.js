@@ -93,19 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection(currentSectionIndex);
     });
 
-    noButton.addEventListener('click', function() {
-        if (meGifIndex < meGifs.length - 1) {
-            meGifIndex = (meGifIndex + 1) % meGifs.length;
-            herGifIndex = (herGifIndex + 1) % herGifs.length;
-            showGifs(meGifIndex, herGifIndex);
-        } else {
-            finalNoGif.style.display = 'block';
-            yesNoButtons.style.display = 'none';
-            meGifs.forEach(gif => gif.style.display = 'none');
-            herGifs.forEach(gif => gif.style.display = 'none');
-        }
-    });
-
     const reconsiderButton = document.getElementById('reconsiderButton');
 
     noButton.addEventListener('click', function() {
