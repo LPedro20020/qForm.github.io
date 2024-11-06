@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     noButton.addEventListener('click', function() {
         if (meGifIndex < meGifs.length - 1) {
-            meGifIndex++;
-            herGifIndex++;
+            meGifIndex = (meGifIndex + 1) % meGifs.length;
+            herGifIndex = (herGifIndex + 1) % herGifs.length;
             showGifs(meGifIndex, herGifIndex);
         } else {
             finalNoGif.style.display = 'block';
