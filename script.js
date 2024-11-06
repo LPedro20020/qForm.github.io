@@ -136,9 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const dateIdea = dateIdeaInput.value.trim();
         const dateIdeaDescription = document.getElementById('dateIdeaDescriptionInput').value.trim();
         if (dateIdea) {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${dateIdea}: ${dateIdeaDescription}`;
-            dateIdeasList.appendChild(listItem);
+            const row = document.createElement('tr');
+            const dateIdeaCell = document.createElement('td');
+            const dateIdeaDescriptionCell = document.createElement('td');
+            dateIdeaCell.textContent = dateIdea;
+            dateIdeaDescriptionCell.textContent = dateIdeaDescription;
+            row.appendChild(dateIdeaCell);
+            row.appendChild(dateIdeaDescriptionCell);
+            dateIdeasList.querySelector('tbody').appendChild(row);
             dateIdeaInput.value = ''; // Clear the input field
             document.getElementById('dateIdeaDescriptionInput').value = ''; // Clear the description input field
         }
